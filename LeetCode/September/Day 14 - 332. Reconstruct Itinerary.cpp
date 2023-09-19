@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/reconstruct-itinerary/
-// T.C : O(V^2)
+// TC : O(V^2)
 // SC: O(V+E)
 
 class Solution {

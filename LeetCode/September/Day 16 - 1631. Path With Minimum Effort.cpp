@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/path-with-minimum-effort/
-// T.C : O(n*m log(n*m))
+// TC : O(n*m log(n*m))
 // SC: O(n*m)
 
 class Solution {

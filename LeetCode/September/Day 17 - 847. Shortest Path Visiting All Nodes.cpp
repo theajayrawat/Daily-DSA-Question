@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/shortest-path-visiting-all-nodes/
-// T.C : O(V*E)
+// TC : O(V*E)
 // SC: O(V*E)
 
 class Solution {
