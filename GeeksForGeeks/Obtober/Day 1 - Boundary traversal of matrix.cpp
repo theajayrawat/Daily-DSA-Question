@@ -1,0 +1,45 @@
+// https://practice.geeksforgeeks.org/problems/boundary-traversal-of-matrix-1587115620/1
+// TC: O(N)
+// SC: O(N)
+
+class Solution
+{   
+    public:
+    //Function to return list of integers that form the boundary 
+    //traversal of the matrix in a clockwise manner.
+    vector<int> boundaryTraversal(vector<vector<int> > matrix, int n, int m) 
+    {
+        // code here
+        int i, j;
+        vector<int> arr;
+        
+        if(n==1){
+            for(j=0; j<m; j++){
+            arr.push_back(matrix[0][j]);
+            }
+        }
+        
+        else if(m==1){
+            for(i=0; i<n; i++){
+            arr.push_back(matrix[i][0]);
+            }
+        }
+        
+        else{
+            for(j=0; j<m; j++){
+            arr.push_back(matrix[0][j]);
+            }
+            for(i=1; i<n; i++){
+            arr.push_back(matrix[i][m-1]);
+            }
+            for(j=m-2; j>=0; j--){
+            arr.push_back(matrix[n-1][j]);
+            }
+            for(i=n-2; i>0; i--){
+            arr.push_back(matrix[i][0]);
+            }
+        }
+        
+        return arr;
+    }
+};
