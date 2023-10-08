@@ -1,6 +1,6 @@
 // https://practice.geeksforgeeks.org/problems/count-number-of-substrings4528/1
 // TC: O(N)
-// SC: O(1)
+// SC: O(N)
 
 class Solution
 {
