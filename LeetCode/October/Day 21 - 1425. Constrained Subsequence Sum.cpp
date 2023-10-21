@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/constrained-subsequence-sum/
 // T.C : O(N*logN)
-// S.C : O(K)
+// S.C : O(N)
 
 class Solution {
 public:
