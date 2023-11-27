@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/largest-submatrix-with-rearrangements/
-//T.C : (m * nlogn)
-//S.C : O(m*n)
+// T.C : (m * nlogn)
+// S.C : O(m*n)
 
 class Solution {
 public:
