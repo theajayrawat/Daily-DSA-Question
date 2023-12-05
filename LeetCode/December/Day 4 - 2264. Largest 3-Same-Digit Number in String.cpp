@@ -10,7 +10,6 @@ public:
             if(num[i]==num[i+1] && num[i]==num[i+2]){
                 ans=max(ans,num[i]-'0');
                 i+=2;
-                cout<<num[i]-'0';
             }
         }
 
