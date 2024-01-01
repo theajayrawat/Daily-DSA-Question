@@ -1,52 +1,38 @@
 // https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/
-// TC: O(n * k)
-// SC: O(n * k)
+// TC: O(n^d)
+// SC: O(1)
 
 class Solution {
 public:
-    int minDifficulty(vector<int>& jobDifficulty, int d) {
-        int len = jobDifficulty.size();
-        if (len < d) {
-            return -1;
-        }
-        int sum = accumulate(jobDifficulty.begin(), jobDifficulty.end(), 0);
-        if (sum == 0) {
-            return 0;
-        }
-        vector<vector<int>> memo(d + 1, vector<int>(len, 0));
-        helper(jobDifficulty, d, 0, memo);
+    int t[301][11];
+    int solve(vector<int>& jobDifficulty, int n, int idx, int d) {
         
-        return memo[d][0];
+        if (d == 1) {
+            return *max_element(begin(jobDifficulty) + idx, end(jobDifficulty));
+        }
+        
+        if (t[idx][d] != -1)
+            return t[idx][d];
+    
+        int Max = INT_MIN;
+        int result = INT_MAX;
+    
+        for (int i = idx; i <= n - d; i++) {
+            Max = max(Max, jobDifficulty[i]);
+            result = min(result, Max + solve(jobDifficulty, n, i + 1, d - 1));
+        }
+        
+        return t[idx][d] = result;
     }
+    
+    int minDifficulty(vector<int>& jobDifficulty, int d) {
+        int n = jobDifficulty.size();
+        
+        if (n < d)
+            return -1;
 
-private:
-    void helper(vector<int>& jd, int daysLeft, int idx, vector<vector<int>>& memo) {
-        int len = jd.size();
-        if (memo[daysLeft][idx] != 0) {
-            return;
-        }
-        if (daysLeft == 1) {
-            int num = 0;
-            for (int i = idx; i < len; i++) {
-                num = max(num, jd[i]);
-            }
-            memo[daysLeft][idx] = num;
-            return;
-        }
-        int maxDifficulty = jd[idx];
-        daysLeft--;
-        int stop = len - idx - daysLeft + 1;
-
-        int res = INT_MAX;
-        for (int i = 1; i < stop; i++) {
-            maxDifficulty = max(maxDifficulty, jd[idx + i - 1]);
-            int other = memo[daysLeft][idx + i];
-            if (other == 0) {
-                helper(jd, daysLeft, idx + i, memo);
-                other = memo[daysLeft][idx + i];
-            }
-            res = min(res, other + maxDifficulty);   
-        }
-        memo[daysLeft + 1][idx] = res;
+        memset(t, -1, sizeof(t));
+        
+        return solve(jobDifficulty, n, 0, d);
     }
 };
